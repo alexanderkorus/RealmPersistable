@@ -1,6 +1,6 @@
 # RealmPersistable
 
-[![CI Status](https://img.shields.io/travis/BigAlKo/RealmPersistable.svg?style=flat)](https://travis-ci.org/BigAlKo/RealmPersistable)
+[![CI Status](https://img.shields.io/travis/alexanderkorus/RealmPersistable.svg?style=flat)](https://travis-ci.org/alexanderkorus/RealmPersistable)
 [![Version](https://img.shields.io/cocoapods/v/RealmPersistable.svg?style=flat)](https://cocoapods.org/pods/RealmPersistable)
 [![License](https://img.shields.io/cocoapods/l/RealmPersistable.svg?style=flat)](https://cocoapods.org/pods/RealmPersistable)
 [![Platform](https://img.shields.io/cocoapods/p/RealmPersistable.svg?style=flat)](https://cocoapods.org/pods/RealmPersistable)
