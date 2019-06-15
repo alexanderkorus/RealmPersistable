@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmPersistable
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,8 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        RealmManager.default.initialize(with: RealmManager.Config(
+            fileUrl: "/Users/alko/Developement/toolset-ios/RealmPersistable/Example/localRealm.realm",
+            shouldUseFilePathWhenSimulator: true,
+            migration: ExampleRealmMigration(),
+            objectTypes: [
+                Model.self
+            ])
+        )
+        
+        
         return true
     }
 
@@ -40,7 +52,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 
+struct ExampleRealmMigration: RealmMigration {
+    
+    func migrate(with schemaVersion: UInt64) -> RealmMigrationBlock {
+        return { migration, oldSchemaVersion in
+            
+            if oldSchemaVersion < schemaVersion {
+                
+                migration.enumerateObjects(ofType: Model.className()) { _, new in
+                    
+                    if let newValue = new?["count"] as? Int, newValue == 0 {
+                        new?["count"] = 1
+                    } else {
+                        new?["count"] = 2
+                    }
+                    
+                    if let newValue = new?["type"] as? String, newValue == "" {
+                        new?["type"] = "MigratedEmpty"
+                    } else {
+                        new?["type"] = "MigratedNull"
+                    }
+                    
+                }
+                
+            }
+            
+        }
+    }
+    
+}

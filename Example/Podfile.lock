@@ -1,0 +1,29 @@
+PODS:
+  - Realm (3.16.1):
+    - Realm/Headers (= 3.16.1)
+  - Realm/Headers (3.16.1)
+  - RealmPersistable (0.1.0):
+    - RealmSwift
+  - RealmSwift (3.16.1):
+    - Realm (= 3.16.1)
+
+DEPENDENCIES:
+  - RealmPersistable (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Realm
+    - RealmSwift
+
+EXTERNAL SOURCES:
+  RealmPersistable:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Realm: 601cacc51d8be3b17a377ef787be0f6ee0e76cf1
+  RealmPersistable: 8e55f9b75e76c7be2d25bde60f88b2c64f3183bd
+  RealmSwift: 486f2e09d5a8ccff63ed66e48d0846b111deb5e5
+
+PODFILE CHECKSUM: 7760849b7c36589d2bf7081427e74943b451c0e1
+
+COCOAPODS: 1.6.1

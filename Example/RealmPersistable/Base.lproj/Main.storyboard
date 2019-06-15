@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,11 +20,50 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PhT-Wo-IVa">
+                                <rect key="frame" x="0.0" y="94" width="375" height="448"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOj-hg-OkK">
+                                <rect key="frame" x="142" y="42" width="91" height="30"/>
+                                <state key="normal" title="Add Model"/>
+                                <connections>
+                                    <action selector="addModelButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ZJY-Qi-2qi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQg-cd-Cxm">
+                                <rect key="frame" x="128.5" y="586" width="118" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="118" id="Mob-yd-3f6"/>
+                                </constraints>
+                                <state key="normal" title="Delete all models"/>
+                                <connections>
+                                    <action selector="deleteModelsButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Scx-am-Q0Z"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="PhT-Wo-IVa" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="CFB-mJ-jRk"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="aQg-cd-Cxm" secondAttribute="bottom" constant="51" id="Efv-yv-CCN"/>
+                            <constraint firstItem="vOj-hg-OkK" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="126" id="I8x-h9-bZu"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="PhT-Wo-IVa" secondAttribute="bottom" constant="125" id="JHl-he-Rbt"/>
+                            <constraint firstAttribute="trailing" secondItem="PhT-Wo-IVa" secondAttribute="trailing" id="anF-d6-O1N"/>
+                            <constraint firstItem="vOj-hg-OkK" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="22" id="cy4-gW-yp1"/>
+                            <constraint firstItem="PhT-Wo-IVa" firstAttribute="top" secondItem="vOj-hg-OkK" secondAttribute="bottom" constant="22" id="gUM-8o-OsQ"/>
+                            <constraint firstItem="aQg-cd-Cxm" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="rxo-dZ-ItC"/>
+                            <constraint firstItem="aQg-cd-Cxm" firstAttribute="top" secondItem="PhT-Wo-IVa" secondAttribute="bottom" constant="44" id="thg-lv-Ued"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vOj-hg-OkK" secondAttribute="trailing" constant="126" id="v5i-9C-eoR"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="PhT-Wo-IVa" id="ugP-w3-Czj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="140" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>

@@ -5,11 +5,17 @@
 [![License](https://img.shields.io/cocoapods/l/RealmPersistable.svg?style=flat)](https://cocoapods.org/pods/RealmPersistable)
 [![Platform](https://img.shields.io/cocoapods/p/RealmPersistable.svg?style=flat)](https://cocoapods.org/pods/RealmPersistable)
 
+This library is a personal toolset to extend RealmSwift with handsome extensions, whose improve usability of Realm based on best practises from gists and other libraries like EasyRealm. Code from third party Libraries are copied directly to the project to be avoid multiple dependency.
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
+
+* Swift 5.0
+* Deployment Target 11.0
+* RealmSwift 3.16.1
 
 ## Installation
 
@@ -20,9 +26,18 @@ it, simply add the following line to your Podfile:
 pod 'RealmPersistable'
 ```
 
+## Usage
+
+TBD
+
+## ToDo
+
+* Code documentation
+* Readme
+
 ## Author
 
-BigAlKo, alexander.korus@ffuf.de
+Alexander Korus, alexander.korus@svote.io
 
 ## License
 
