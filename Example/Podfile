@@ -2,10 +2,4 @@ use_frameworks!
 
 target 'RealmPersistable_Example' do
   pod 'RealmPersistable', :path => '../'
-
-  target 'RealmPersistable_Tests' do
-    inherit! :search_paths
-
-    
-  end
 end
