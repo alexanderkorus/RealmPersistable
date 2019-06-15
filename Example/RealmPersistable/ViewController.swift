@@ -49,6 +49,8 @@ class ViewController: UIViewController {
             $0.count = 3
         }
         
+        
+        
     }
     
     @IBAction func deleteModelsButtonTapped(_ sender: Any) {

@@ -19,6 +19,7 @@ public protocol Persistable where Self: Object {
     // Instance Methods
     func save(update: Realm.UpdatePolicy) -> Self?
     func delete(cascading: Bool)
+    func edit(properties: (Self) -> Void)
     
     // Static Methods
     static func get(forPrimaryKey: Id) -> Self?
@@ -97,6 +98,22 @@ public extension Persistable where Self: Object {
         guard let realm = try? Realm() else { return nil }
         return realm.object(ofType: Self.self, forPrimaryKey: forPrimaryKey)
         
+    }
+    
+    func edit(properties: (Self) -> Void) {
+        guard let realm = try? Realm() else { return }
+        
+        // use self when managed or query if unmanged from databse
+        if let object = self.isManaged
+            ? self
+            : Self.get(forPrimaryKey: self.id) {
+            
+            properties(object)
+            
+            try? realm.safeWrite {
+                _ = self.save(update: .modified)
+            }
+        }
     }
 }
 
