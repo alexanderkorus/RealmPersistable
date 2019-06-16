@@ -7,13 +7,14 @@
 
 This library is a personal toolset to extend RealmSwift with handsome extensions, whose improve usability of Realm based on best practises from gists and other libraries like EasyRealm. Code from third party Libraries are copied directly to the project to be avoid multiple dependency.
 
-## Features
+## Key Features
 
 * RealmManager to initialize realm Configuration
 * Automatic Realm Migration without taking care about increasing schemaVersion
 * CRUD functions directly for Persistable Models
 * Diffing option when saving collection of objects
 * Cascade Deleting
+* RealmOptional Conformance to Codable - so you don't have to defining Codables with initializer
 
 ## Requirements
 
