@@ -100,6 +100,10 @@ public class RealmManager {
             self.migration = migration
             self.shouldUseFilePathWhenSimulator = shouldUseFilePathWhenSimulator
             self.objectTypes = objectTypes
+            self.objectTypes.append(contentsOf: [
+                RealmOptionalInt.self,
+                RealmOptionalBool.self
+            ])
         }
     }
     

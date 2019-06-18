@@ -12,7 +12,7 @@ import RealmSwift
 // stolen functions from the Swift stdlib
 // https://github.com/apple/swift/blob/2e5817ebe15b8c2fc2459e08c1d462053cbb9a99/stdlib/public/core/Codable.swift
 //
-func assertTypeIsEncodable<T>(_ type: T.Type, in wrappingType: Any.Type) {
+public func assertTypeIsEncodable<T>(_ type: T.Type, in wrappingType: Any.Type) {
     guard T.self is Encodable.Type else {
         if T.self == Encodable.self || T.self == Codable.self {
             preconditionFailure("\(wrappingType) does not conform to Encodable because Encodable does not conform to itself. You must use a concrete type to encode or decode.")
@@ -22,7 +22,7 @@ func assertTypeIsEncodable<T>(_ type: T.Type, in wrappingType: Any.Type) {
     }
 }
 
-func assertTypeIsDecodable<T>(_ type: T.Type, in wrappingType: Any.Type) {
+public func assertTypeIsDecodable<T>(_ type: T.Type, in wrappingType: Any.Type) {
     guard T.self is Decodable.Type else {
         if T.self == Decodable.self || T.self == Codable.self {
             preconditionFailure("\(wrappingType) does not conform to Decodable because Decodable does not conform to itself. You must use a concrete type to encode or decode.")
@@ -32,13 +32,13 @@ func assertTypeIsDecodable<T>(_ type: T.Type, in wrappingType: Any.Type) {
     }
 }
 
-extension Encodable {
+public extension Encodable {
     func __encode(to container: inout SingleValueEncodingContainer) throws { try container.encode(self) }
     func __encode(to container: inout UnkeyedEncodingContainer)     throws { try container.encode(self) }
     func __encode<Key>(to container: inout KeyedEncodingContainer<Key>, forKey key: Key) throws { try container.encode(self, forKey: key) }
 }
 
-extension Decodable {
+public extension Decodable {
     // Since we cannot call these __init, we'll give the parameter a '__'.
     fileprivate init(__from container: SingleValueDecodingContainer)   throws { self = try container.decode(Self.self) }
     fileprivate init(__from container: inout UnkeyedDecodingContainer) throws { self = try container.decode(Self.self) }
@@ -103,5 +103,108 @@ extension List : Encodable where Element : Decodable {
             let subencoder = container.superEncoder()
             try (element as! Encodable).encode(to: subencoder) // swiftlint:disable:this force_cast
         }
+    }
+}
+
+public class RealmOptionalBool: Object, Codable {
+    @objc dynamic var id: Int = 0
+    private var boolValue = RealmOptional<Bool>()
+    
+    override public static func primaryKey() -> String? {
+        return "id"
+    }
+    
+    required public convenience init(from decoder: Decoder) throws {
+        self.init()
+        
+        let singleValueContainer = try decoder.singleValueContainer()
+        if singleValueContainer.decodeNil() == false {
+            let value = try singleValueContainer.decode(Bool.self)
+            boolValue = RealmOptional(value)
+            id = value == true ? 1 : 0
+        }
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var singleValueEncoder = encoder.singleValueContainer()
+        if let v = self.value {
+            try singleValueEncoder.encode(v)
+        } else {
+            try singleValueEncoder.encodeNil()
+        }
+    }
+    
+    var value: Bool? {
+        return boolValue.value
+    }
+    
+    var falseOrValue: Bool {
+        return boolValue.value ?? false
+    }
+}
+
+public class RealmOptionalInt: Object, Codable {
+    private var intValue = RealmOptional<Int>()
+    
+    override public static func primaryKey() -> String? {
+        return "intValue"
+    }
+    
+    required public convenience init(from decoder: Decoder) throws {
+        self.init()
+        
+        let singleValueContainer = try decoder.singleValueContainer()
+        
+        if singleValueContainer.decodeNil() == false {
+            let value = try singleValueContainer.decode(Int.self)
+            intValue = RealmOptional(value)
+        }
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var singleValueEncoder = encoder.singleValueContainer()
+        if let v = self.value {
+            try singleValueEncoder.encode(v)
+        } else {
+            try singleValueEncoder.encodeNil()
+        }
+    }
+    
+    public var value: Int? {
+        return intValue.value
+    }
+    
+    public var zeroOrValue: Int {
+        return intValue.value ?? 0
+    }
+}
+
+
+
+public class RealmList<T: RealmCollectionValue & Codable>: Object, Codable {
+    private let listValue = List<T>()
+    
+    required public convenience init(from decoder: Decoder) throws {
+        self.init()
+        
+        
+        let singleValueContainer = try decoder.singleValueContainer()
+        if singleValueContainer.decodeNil() == false {
+            let l = try singleValueContainer.decode([T].self)
+            print(l)
+            self.listValue.append(objectsIn: l)
+            print("LIST_VALUE:")
+            print(self.listValue)
+        }
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var singleValueEncoder = encoder.singleValueContainer()
+        try singleValueEncoder.encode(self.list)
+        
+    }
+    
+    public var list: List<T> {
+        return listValue
     }
 }

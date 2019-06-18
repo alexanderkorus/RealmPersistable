@@ -14,7 +14,12 @@ This library is a personal toolset to extend RealmSwift with handsome extensions
 * CRUD functions directly for Persistable Models
 * Diffing option when saving collection of objects
 * Cascade Deleting
-* RealmOptional Conformance to Codable - so you don't have to defining Codables with initializer
+* RealmOptional Conformance to Codable 
+* Experimental - Alternative optional types, decode RealmOptional Types automatically:
+    * RealmOptionalBool
+    * RealmOptionalInt
+    * RealmList<T> (Doesn't work actually)
+    
 
 ## Requirements
 
@@ -184,10 +189,61 @@ self.models = resultModels.toArray(ofType: Model.self) // returns managed array 
 self.models = resultModels.unmanagedArray(Model.self) // returns unmanaged array of objects
 ```
 
+### Experimental: Alternative Optional Types for Codables
+
+The library includes actually two wrapper for RealmOptionals, to avoid defining manual the decode / encoding process
+for RealmOptionals. To use it, do the following:
+
+```swift
+@objcMembers
+final class Model: Object, Persistable, Codable {
+    dynamic var id: Int = 0
+    dynamic var count: OptionalInt?
+    dynamic var isModel: OptionalBool?
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case count
+        case isModel
+    }
+}
+```
+
+You can use  the types like a normal RealmOptional:
+```swift
+Model.create {
+    $0.id = 1
+    $0.count.value = 200
+    $0.isModel.value = true
+}
+let model = Model.get(forPrimaryKey: 1)
+print(model.count.value) // prints Optional(200)
+print(model.isModel.value) // prints Optional(true)
+```
+
+If you now encode for example the model, it encodes not to the OptionalType, but to the value directly:
+```swift
+let encoder = JSONEncoder()
+do {
+    let data = encoder.encode(model)
+    print(String(data: data, encoding: .utf8)) 
+    /* prints 
+    {"id":1, "count": 200, "isModel": true}
+    */
+} catch let error {
+    debugPrint(error)
+}
+```
+
+RealmList actually don't work properly, it is actually work in progress. So if you have a List in your 
+Model, you have to manually defining the encoding / decoding
+
 ## ToDo
 
 * Code documentation
 * Example for Edit function
+* Make RealmList working correctly
+* Add additional Optional Types
 
 ## Author
 
