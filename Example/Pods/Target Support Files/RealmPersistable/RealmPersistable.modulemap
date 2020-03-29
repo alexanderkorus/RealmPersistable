@@ -1,0 +1,6 @@
+framework module RealmPersistable {
+  umbrella header "RealmPersistable-umbrella.h"
+
+  export *
+  module * { export * }
+}

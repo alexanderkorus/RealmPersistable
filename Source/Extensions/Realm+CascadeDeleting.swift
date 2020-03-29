@@ -16,7 +16,7 @@ import Realm
  and improved with other functions
  */
 
-public protocol CascadeDeleting: class {
+public protocol CascadeDeleting {
     func delete<S: Sequence>(_ objects: S, cascading: Bool) where S.Iterator.Element: Object
     func delete<Entity: Object>(_ entity: Entity, cascading: Bool)
 }
@@ -94,7 +94,7 @@ private extension Realm {
                     guard let realmObject = list._rlmArray.object(at: index) as? RLMObjectBase else { continue }
                     toBeDeleted.insert(realmObject)
                 }
-            } else if let linkingObjects = value as? LinkingObjectsBase {
+            } else if let linkingObjects = value as? LinkingObjects {
                 guard let type = deletable.propertiesToCascadeDelete[$0] else { return }
                 guard let unrwappedType = type else { fatalError("Object type not specified for cascade delete of linking object") }
                 guard let objects = convertLinkingBase(linkingObjects, to: unrwappedType) else { return }
@@ -105,7 +105,7 @@ private extension Realm {
         }
     }
     
-    private func convertLinkingBase<Element: Object>(_ linkingObjects: LinkingObjectsBase, to type: Element.Type) -> LinkingObjects<Element>? {
+	private func convertLinkingBase<Element: Object>(_ linkingObjects: LinkingObjects<Object>, to type: Element.Type) -> LinkingObjects<Element>? {
         let p = unsafeBitCast(linkingObjects, to: Optional<LinkingObjects<Element>>.self)
         return p
     }
