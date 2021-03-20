@@ -107,10 +107,9 @@ public extension Persistable where Self: Object {
         if let object = self.isManaged
             ? self
             : Self.get(forPrimaryKey: self.id) {
-            
-            properties(object)
-            
+
             try? realm.safeWrite {
+				properties(object)
                 _ = self.save(update: .modified)
             }
         }
