@@ -1,6 +1,6 @@
 {
   "name": "RealmPersistable",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "summary": "This library extends RealmSwift with handsome extensions to improve usability of Realm based on Best Practises and other Libraries.",
   "description": "This library is a personal toolset to extend RealmSwift with handsome extensions, whose improve usability of Realm based on best practises from gists and other libraries like EasyRealm. Code from third party Libraries are copied directly to the project to be avoid multiple dependency.",
   "homepage": "https://github.com/alexanderkorus/RealmPersistable",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/alexanderkorus/RealmPersistable.git",
-    "tag": "0.1.0"
+    "tag": "0.2.0"
   },
   "platforms": {
     "ios": "11.0"
@@ -21,7 +21,7 @@
   "source_files": "Source/**/*",
   "dependencies": {
     "RealmSwift": [
-
+      "5.5.2"
     ]
   }
 }

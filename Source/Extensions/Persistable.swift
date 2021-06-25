@@ -110,8 +110,9 @@ public extension Persistable where Self: Object {
 
             try? realm.safeWrite {
 				properties(object)
-                _ = self.save(update: .modified)
             }
+
+
         }
     }
 }
@@ -163,7 +164,6 @@ public extension Array where Element: Persistable {
         }
         
     }
-    
 }
 
 

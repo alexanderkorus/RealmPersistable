@@ -2,4 +2,6 @@ use_frameworks!
 
 target 'RealmPersistable_Example' do
   pod 'RealmPersistable', :path => '../'
+	pod 'RealmSwift', :git => 'https://github.com/realm/realm-cocoa.git', :tag => "v5.5.2", :submodules => "true"
+	pod 'Realm', :git => 'https://github.com/realm/realm-cocoa.git', :tag => "v5.5.2", :submodules => "true"
 end

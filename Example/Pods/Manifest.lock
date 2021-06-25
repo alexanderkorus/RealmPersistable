@@ -1,29 +1,44 @@
 PODS:
-  - Realm (4.4.0):
-    - Realm/Headers (= 4.4.0)
-  - Realm/Headers (4.4.0)
-  - RealmPersistable (0.1.0):
-    - RealmSwift
-  - RealmSwift (4.4.0):
-    - Realm (= 4.4.0)
+  - Realm (5.5.2):
+    - Realm/Headers (= 5.5.2)
+  - Realm/Headers (5.5.2)
+  - RealmPersistable (0.2.0):
+    - RealmSwift (= 5.5.2)
+  - RealmSwift (5.5.2):
+    - Realm (= 5.5.2)
 
 DEPENDENCIES:
+  - Realm (from `https://github.com/realm/realm-cocoa.git`, tag `v5.5.2`)
   - RealmPersistable (from `../`)
-
-SPEC REPOS:
-  trunk:
-    - Realm
-    - RealmSwift
+  - RealmSwift (from `https://github.com/realm/realm-cocoa.git`, tag `v5.5.2`)
 
 EXTERNAL SOURCES:
+  Realm:
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: 'true'
+    :tag: v5.5.2
   RealmPersistable:
     :path: "../"
+  RealmSwift:
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: 'true'
+    :tag: v5.5.2
+
+CHECKOUT OPTIONS:
+  Realm:
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: 'true'
+    :tag: v5.5.2
+  RealmSwift:
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: 'true'
+    :tag: v5.5.2
 
 SPEC CHECKSUMS:
-  Realm: e125f464884cda953ebefe70c671b75b03b81b9b
-  RealmPersistable: 5367f60c6ba2ac0fcb7dbe36c5cc66af09588125
-  RealmSwift: 33656a42bd300959a081fc13347376bc478071af
+  Realm: 8d22fdff88cd93ee2ff9bdb37a286f7c90424024
+  RealmPersistable: 411c7b9f7d7dcde024c3805d95ec6ae2ca6e1624
+  RealmSwift: 8e5decdf389228d974f2f529ae59a5d4a1c0bda3
 
-PODFILE CHECKSUM: 15cd7052eed493611e974a0d7001b1be6b049ba1
+PODFILE CHECKSUM: cb2e7daccf199b1f66622f83e9f36563bd5e5069
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.1

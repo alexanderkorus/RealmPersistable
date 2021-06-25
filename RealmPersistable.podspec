@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RealmPersistable'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'This library extends RealmSwift with handsome extensions to improve usability of Realm based on Best Practises and other Libraries.'
 
 # This description is used to generate tags and improve search results.
@@ -39,5 +39,5 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'RealmSwift', '5.3.5'
+  s.dependency 'RealmSwift', '5.5.2'
 end

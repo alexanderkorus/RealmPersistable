@@ -78,7 +78,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         let model = self.models[indexPath.row]
         
-        model.delete()
+		
         
     }
 }
